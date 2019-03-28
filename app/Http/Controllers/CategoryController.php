@@ -9,7 +9,7 @@ class CategoryController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except('create')->except('show');;
+        $this->middleware('auth')->except('show','index','create');
     }
     /**
      * Display a listing of the resource.

@@ -1,7 +1,5 @@
 @extends('layouts.master')
 
-@section('title',"| $tag->name Tag")
-
 @section('content')
 
 <header class="masthead" style="background-image: url('/work/public/frontend/assets/img/home-bg.jpg')">

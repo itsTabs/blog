@@ -23,9 +23,13 @@
         <div class="col-lg-8 col-md-8 mx-auto">
             <p>{!!$post->body!!}</p>
             <hr>
-            @foreach($post->tags as $tag)
-              <span class="badge badge-secondary">{{$tag->name}}</span>
-            @endforeach
+              <h3>Tags | 
+                <small>
+                  @foreach($post->tags as $tag)
+                    <span class="badge badge-secondary"> {{$tag->name}}</span>
+                  @endforeach
+                </small>
+              </h3>
             <hr>
             @if(!Auth::guest())
                 @if(Auth::user()->id == $post->user_id)
@@ -56,14 +60,37 @@
                         </tbody>
                       </table>
                   </div>
-                @endif
-                @if(Auth::user()->id != $post->user_id)
+                @elseif(Auth::user()->id !== $post->user_id && !Auth::guest())
                   <h3>Comments <small>{{ $post->comments()->count() }}</small></h3>
                   @foreach($post->comments as $comment)
                     <div class="comment">
                     <p>{{ $comment->comment }} <small>Comment by {{ $comment->name }}</small></p>
                     </div>
                   @endforeach
+                  <hr>
+                  <div id="comment-form">
+                    {{Form::open(['route' => ['comments.store', $post->id],'method' => 'POST'])}}
+                      <div class="row">
+                        <div class="col-md-6">
+                          {{Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Name'])}}
+                        </div>
+                        <div class="col-md-6">
+                          {{Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Email'])}}
+                        </div>
+                        <div class="col-md-12">
+                          {{Form::textarea('comment', null, ['class' => 'form-control', 'placeholder' => 'Comment', 'style' => 'margin-top:10px;' ])}}
+                          {{Form::submit('Add Comment',['class' => 'btn btn-success btn-block', 'rows' => '3', 'style' => 'margin-top:10px;'])}}
+                        </div>
+                      </div>
+                    {{Form::close()}}
+                  </div> 
+                @else
+                <h3>Comments <small>{{ $post->comments()->count() }}</small></h3>
+                @foreach($post->comments as $comment)
+                  <div class="comment">
+                  <p>{{ $comment->comment }} <small>Comment by {{ $comment->name }}</small></p>
+                  </div>
+                @endforeach
                 <hr>
                 <div id="comment-form">
                   {{Form::open(['route' => ['comments.store', $post->id],'method' => 'POST'])}}
@@ -94,7 +121,6 @@
               @if(!Auth::guest())
                 @if(Auth::user()->id == $post->user_id && Auth::user()->isAdmin !==1)
                   <hr> 
-                
                     <div class="clearfix p-2">
                       <a href='/work/public/post/{{$post-> id}}/edit' class="btn btn-secondary btn-block">Edit</a> 
                     </div>
