@@ -31,7 +31,32 @@
                 </small>
               </h3>
             <hr>
-            @if(!Auth::guest())
+            @guest
+              <h3>Comments <small>{{ $post->comments()->count() }}</small></h3>
+              @foreach($post->comments as $comment)
+                <div class="comment">
+                <p>{{ $comment->comment }} <small>Comment by {{ $comment->name }}</small></p>
+                </div>
+              @endforeach
+              <hr>
+              <div id="comment-form">
+                {{Form::open(['route' => ['comments.store', $post->id],'method' => 'POST'])}}
+                  <div class="row">
+                    <div class="col-md-6">
+                      {{Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Name'])}}
+                    </div>
+                    <div class="col-md-6">
+                      {{Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Email'])}}
+                    </div>
+                    <div class="col-md-12">
+                      {{Form::textarea('comment', null, ['class' => 'form-control', 'placeholder' => 'Comment', 'style' => 'margin-top:10px;' ])}}
+                      {{Form::submit('Add Comment',['class' => 'btn btn-success btn-block', 'rows' => '3', 'style' => 'margin-top:10px;'])}}
+                    </div>
+                  </div>
+                {{Form::close()}}
+              </div>
+            @else
+  
                 @if(Auth::user()->id == $post->user_id)
                   <div id="backend-comments">
                     <h3>Comments <small>{{ $post->comments()->count()}}</small></h3>
@@ -109,7 +134,7 @@
                   {{Form::close()}}
                 </div> 
                 @endif
-            @endif     
+            @endauth     
         </div>
         <div class="col-lg-4 col-md-4 mx-auto">
           <div class="card">

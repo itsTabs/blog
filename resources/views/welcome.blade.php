@@ -65,7 +65,21 @@
               @endif
               </table>
             </div> 
-        </div>       
+        </div>
+        <div class="card" style="margin-top:10px; border:0px">
+          <div class="card-body">
+            <h3>Tags</h3>
+            <table class="table table-hover table-borderless">
+              @if(count($tags)>0)
+              @foreach ($tags as $tag)
+                <span class="badge badge-secondary m-1"><a href="/work/public/tag/{{$tag->id}}" style="color:#fff">{{$tag->name}}</a></span>
+              @endforeach
+              @else
+                <p>No Tags found.</p>
+            @endif
+            </table>
+          </div> 
+      </div>       
       </div>
     </div>
   </div>

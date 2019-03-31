@@ -22,7 +22,7 @@
             @include('inc.messages')
       <div class="row" style="margin-bottom: 10px;">
 
-        <div class="col-lg-3 col-md-3 mx-auto card"> 
+        <div class="col-lg-3 col-md-3 mx-auto"> 
             <div class="card" style="background-color:darkgrey">
               <div class="card-body">
                   <a class="dropdown-item" href="/work/public/post">Posts</a>

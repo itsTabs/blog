@@ -20,8 +20,7 @@
   <div class="container-fluid p-5">
         @include('inc.messages')
     <div class="row">
-
-        <div class="col-lg-3 col-md-3 mx-auto card"> 
+        <div class="col-lg-3 col-md-3 mx-auto"> 
             <div class="card" style="background-color:darkgrey">
               <div class="card-body">
                   <a class="dropdown-item" href="/work/public/post">Posts</a>
@@ -47,10 +46,10 @@
                                   <td><a href="/work/public/post/{{$post-> id}}" class="btn btn-primary float-right">View</a></td>
                                   <!--td><a href="/work/public/post/{{$post-> id}}/edit" class="btn btn-secondary float-right">Edit</a></td-->
                                   <td>
-                                          {!!Form::open(['action' => ['AdminController@destroy', $post->id],'method' => 'POST', 'class' => 'float-right'])!!}
-                                          {{Form::hidden('_method','DELETE')}}
-                                          {{Form::submit('Delete',['class' => 'btn btn-danger'])}}
-                                          {!!Form::close()!!}    
+                                    {!!Form::open(['action' => ['AdminController@destroy', $post->id],'method' => 'POST', 'class' => 'float-right'])!!}
+                                    {{Form::hidden('_method','DELETE')}}
+                                    {{Form::submit('Delete',['class' => 'btn btn-danger'])}}
+                                    {!!Form::close()!!}    
                                   </td>
                               </tr>
                               @endforeach  
@@ -67,10 +66,10 @@
                                   <td><a href="/work/public/post/{{$user_post-> id}}" class="btn btn-primary float-right">View</a></td>
                                   <td><a href="/work/public/post/{{$user_post-> id}}/edit" class="btn btn-secondary float-right">Edit</a></td>
                                   <td>
-                                          {!!Form::open(['action' => ['PostsController@destroy', $user_post->id],'method' => 'POST', 'class' => 'float-right'])!!}
-                                          {{Form::hidden('_method','DELETE')}}
-                                          {{Form::submit('Delete',['class' => 'btn btn-danger'])}}
-                                          {!!Form::close()!!}    
+                                    {!!Form::open(['action' => ['PostsController@destroy', $user_post->id],'method' => 'POST', 'class' => 'float-right'])!!}
+                                    {{Form::hidden('_method','DELETE')}}
+                                    {{Form::submit('Delete',['class' => 'btn btn-danger'])}}
+                                    {!!Form::close()!!}    
                                   </td>
                               </tr>
                               @endforeach  

@@ -20,7 +20,7 @@
       @include('inc.messages') 
       <div class="row">
         @if(Auth::user()->isAdmin ==1 && Auth::user()->id)
-          <div class="col-lg-3 col-md-3 mx-auto card"> 
+          <div class="col-lg-3 col-md-3 mx-auto"> 
             <div class="card" style="background-color:darkgrey">
               <div class="card-body">
                   <a class="dropdown-item" href="/work/public/post">Posts</a>
@@ -56,7 +56,7 @@
             </div>
           </div>
         @else
-          <div class="col-lg-3 col-md-3 mx-auto card"> 
+          <div class="col-lg-3 col-md-3 mx-auto"> 
             <div class="card" style="background-color:darkgrey">
               <div class="card-body">
                   <a class="dropdown-item" href="/work/public/post">Posts</a>

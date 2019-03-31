@@ -17,7 +17,7 @@
 
 <div class="container-fluid p-5">
   <div class="row">
-      <div class="col-lg-3 col-md-3 mx-auto card"> 
+      <div class="col-lg-3 col-md-3 mx-auto"> 
           <div class="card" style="background-color:darkgrey">
             <div class="card-body">
                 <a class="dropdown-item" href="/work/public/post">Posts</a>
@@ -27,12 +27,16 @@
           </div>
       </div>
     <div class="col-lg-8 col-md-8 mx-auto">
-        <?php 
-        if(auth()->user()->isAdmin == 1){?>
+        @if(Auth::user()->isAdmin ==1)
           <div class=”panel-body”>
-            <a href="{{url('admin/routes')}}">Admin</a>
-          </div><?php }
-          else echo '<div class="panel-heading">Normal User</div>';?>
+            <h3>You have the Administrator Access.</h3>
+          </div>
+        @else  
+          <div class=”panel-body”>
+            <h3>You have the User Access.</h3>
+          </div>
+        @endif
+          
     </div>
   </div>
 </div>

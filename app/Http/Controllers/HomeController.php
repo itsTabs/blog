@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\Tag;
 use App\Post;
 use App\Contact;
 
@@ -24,7 +25,8 @@ class HomeController extends Controller
     {
         $posts = Post::paginate(4);
         $category = Category::all();
-        return view('welcome')->with('posts',$posts)->with('categories',$category); 
+        $tag = Tag::all();
+        return view('welcome')->with('posts',$posts)->with('categories',$category)->with('tags',$tag); 
     }
     public function about()
     {
