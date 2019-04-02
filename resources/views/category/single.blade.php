@@ -31,7 +31,7 @@
               </div>
             </div>
         </div>
-
+ 
         <div class="col-lg-9 col-md-9 mx-auto">
           <div class="col-lg-12 col-md-12 mx-auto">
             <h3>Category : {{ $category->name }} <small>( {{$category->posts()->count()}} Posts )</small></h3>
